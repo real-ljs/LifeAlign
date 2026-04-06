@@ -6,8 +6,8 @@ Official codebase for the paper [LifeAlign: Lifelong Alignment for Large Languag
 
 This project is built on top of LlamaFactory and extends its DPO/SFT training pipeline for lifelong alignment. Following the paper, the implementation centers on two ideas:
 
-- Focalized Preference Optimization (FPO): emphasizes harder preference pairs during alignment.
-- Short-to-Long Memory Consolidation (SLMC): denoises task-specific updates and projects them into a stable long-term memory space to reduce forgetting.
+- Focalized Preference Optimization (FPO): Adaptively allocates learning intensity based on sample difficulty during the preference optimization process.
+- Short-to-Long Memory Consolidation (SLMC): Denoises task-specific updates and projects them into a stable long-term memory space to reduce forgetting.
 
 At the code level, the main components are:
 
