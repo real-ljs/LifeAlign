@@ -1,9 +1,5 @@
 # LifeAlign
 
-[LifeAlign: Lifelong Alignment for Large Language Models with Memory-Augmented Focalized Preference Optimization (AAAI 2026 Oral)](https://arxiv.org/pdf/2509.17183)
-
-Code is coming soon...
-
 ![](Images/framework.png)
 =======
 Official codebase for the paper [LifeAlign: Lifelong Alignment for Large Language Models with Memory-Augmented Focalized Preference Optimization](https://arxiv.org/abs/2509.17183).
