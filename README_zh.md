@@ -6,7 +6,7 @@
 
 项目基于 LlamaFactory 扩展，实现了面向大语言模型持续对齐的训练流程。按照论文思路，方法核心包含两部分：
 
-- Focalized Preference Optimization, FPO：在偏好优化过程中更关注困难样本。
+- Focalized Preference Optimization, FPO：在偏好优化过程中根据样本难度自适应分配学习力度。
 - Short-to-Long Memory Consolidation, SLMC：对任务更新进行去噪，并投影到稳定的长期记忆子空间中，以缓解灾难性遗忘。
 
 代码中与方法最相关的模块包括：
