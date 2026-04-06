@@ -1,5 +1,7 @@
 # LifeAlign
 
+![](Images/framework.png)
+
 本仓库是论文 [LifeAlign: Lifelong Alignment for Large Language Models with Memory-Augmented Focalized Preference Optimization](https://arxiv.org/abs/2509.17183) 的代码实现。
 
 项目基于 LlamaFactory 扩展，实现了面向大语言模型持续对齐的训练流程。按照论文思路，方法核心包含两部分：
