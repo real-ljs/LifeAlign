@@ -1,0 +1,39 @@
+### model
+model_name_or_path: /mnt/workspace2/models/Qwen2.5-7B-Instruct
+adapter_name_or_path: saves/Qwen2.5-7B-Instruct/lora/DPO_with_GEM-0404/Capybara-Preferences
+# adapter_name_or_path: saves/Qwen2.5-7B-Instruct/lora/SFT/hh-rlhf-harmless-base
+
+do_predict: true
+# deepspeed: examples/deepspeed/ds_z3_config.json
+# accelerate: examples/accelerate/fsdp_config.yaml
+
+### method
+stage: sft
+finetuning_type: lora
+# compute_accuracy: true
+
+### dataset
+eval_dataset: Capybara-Preferences-test-sft
+template: qwen
+cutoff_len: 2048
+# max_samples: 10
+overwrite_cache: true
+preprocessing_num_workers: 4
+
+### generate
+# max_length: 8192
+max_new_tokens: 1024
+# temperature: 0.95
+# top_k: 50
+# top_p: 0.9
+
+### output
+# output_dir: saves/mistral-7b/sample-6/predict
+output_dir: save_test/Qwen2.5-7B-Instruct/lora/DPO_with_GEM-0404/Capybara-Preferences-trained
+overwrite_output_dir: true
+report_to: none
+
+### eval
+per_device_eval_batch_size: 4
+predict_with_generate: true
+ddp_timeout: 180000000

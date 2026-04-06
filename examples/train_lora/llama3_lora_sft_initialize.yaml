@@ -1,0 +1,47 @@
+### model
+# model_name_or_path: meta-llama/Meta-Llama-3-8B-Instruct
+model_name_or_path: /mnt/workspace2/models/Qwen2.5-7B-Instruct
+# model_name_or_path: /mnt/workspace2/models/Mistral-7b-v0.3
+# deepspeed: examples/deepspeed/ds_z3_config.json
+### method
+stage: sft
+do_train: true
+finetuning_type: lora
+lora_target: q_proj,v_proj
+
+### dataset
+dataset: Capybara-Preferences-sft,HC3-sft,hh-rlhf-harmless-base-sft,hh-rlhf-helpful-base-sft,safe-rlhf-sft,TruthfulQA-sft
+# dataset: safe-rlhf-sft
+# dataset: TruthfulQA-sft,safe-rlhf-sft,hh-rlhf-helpful-base-sft,hh-rlhf-harmless-base-sft,HC3-sft,Capybara-Preferences-sft
+# dataset: hh-rlhf-harmless-base-sft,Capybara-Preferences-sft,TruthfulQA-sft,hh-rlhf-helpful-base-sft,HC3-sft,safe-rlhf-sft
+template: qwen
+cutoff_len: 2048
+# max_samples: 10
+overwrite_cache: true
+preprocessing_num_workers: 2
+
+### output
+# output_dir: saves/Qwen2.5-7B-Instruct/lora/SFT-initialize-order1
+output_dir: saves/Qwen2.5-7B-Instruct/lora/SFT-initialize
+logging_steps: 10
+save_steps: 1000
+plot_loss: true
+overwrite_output_dir: true
+
+### train
+per_device_train_batch_size: 2
+gradient_accumulation_steps: 8
+learning_rate: 1.0e-4
+num_train_epochs: 3.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.1
+bf16: true
+report_to: none
+ddp_timeout: 180000000
+
+### eval
+# val_size: 0.1
+# eval_dataset: prm-val
+# per_device_eval_batch_size: 1
+# eval_strategy: steps
+# eval_steps: 100

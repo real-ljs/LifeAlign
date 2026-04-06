@@ -1,0 +1,194 @@
+{
+  "Capybara-Preferences-test-sft":{
+    "file_name": "Capybara-Preferences/test.json",
+    "columns": {
+      "prompt":"query",
+      "response": "chosen"
+    }
+  },
+  "HC3-test-sft":{
+    "file_name": "HC3/test.json",
+    "columns": {
+      "prompt":"query",
+      "response": "chosen"
+    }
+  },
+  "hh-rlhf-harmless-base-test-sft":{
+    "file_name": "hh-rlhf-harmless-base/test.json",
+    "columns": {
+      "prompt":"query",
+      "response": "chosen"
+    }
+  },
+  "hh-rlhf-helpful-base-test-sft":{
+    "file_name": "hh-rlhf-helpful-base/test.json",
+    "columns": {
+      "prompt":"query",
+      "response": "chosen"
+    }
+  },
+  "safe-rlhf-test-sft":{
+    "file_name": "safe-rlhf/test.json",
+    "columns": {
+      "prompt":"query",
+      "response": "chosen"
+    }
+  },
+  "TruthfulQA-test-sft":{
+    "file_name": "TruthfulQA/test.json",
+    "columns": {
+      "prompt": "query",
+      "response": "chosen"
+    }
+  },
+  "Capybara-Preferences-test":{
+    "file_name": "Capybara-Preferences/test.json",
+    "ranking": true,
+    "columns": {
+      "prompt":"query",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "HC3-test":{
+    "file_name": "HC3/test.json",
+    "ranking": true,
+    "columns": {
+      "prompt":"query",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "hh-rlhf-harmless-base-test":{
+    "file_name": "hh-rlhf-harmless-base/test.json",
+    "ranking": true,
+    "columns": {
+      "prompt":"query",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "hh-rlhf-helpful-base-test":{
+    "file_name": "hh-rlhf-helpful-base/test.json",
+    "ranking": true,
+    "columns": {
+      "prompt":"query",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "safe-rlhf-test":{
+    "file_name": "safe-rlhf/test.json",
+    "ranking": true,
+    "columns": {
+      "prompt":"query",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "TruthfulQA-test":{
+    "file_name": "TruthfulQA/test.json",
+    "ranking": true,
+    "columns": {
+      "prompt": "query",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "Capybara-Preferences-sft":{
+    "file_name": "Capybara-Preferences/train.json",
+    "columns": {
+      "prompt":"query",
+      "response": "chosen"
+    }
+  },
+  "HC3-sft":{
+    "file_name": "HC3/train.json",
+    "columns": {
+      "prompt":"query",
+      "response": "chosen"
+    }
+  },
+  "hh-rlhf-harmless-base-sft":{
+    "file_name": "hh-rlhf-harmless-base/train.json",
+    "columns": {
+      "prompt":"query",
+      "response": "chosen"
+    }
+  },
+  "hh-rlhf-helpful-base-sft":{
+    "file_name": "hh-rlhf-helpful-base/train.json",
+    "columns": {
+      "prompt":"query",
+      "response": "chosen"
+    }
+  },
+  "safe-rlhf-sft":{
+    "file_name": "safe-rlhf/train.json",
+    "columns": {
+      "prompt":"query",
+      "response": "chosen"
+    }
+  },
+  "TruthfulQA-sft":{
+    "file_name": "TruthfulQA/train.json",
+    "columns": {
+      "prompt": "query",
+      "response": "chosen"
+    }
+  },
+  "Capybara-Preferences":{
+    "file_name": "Capybara-Preferences/train.json",
+    "ranking": true,
+    "columns": {
+      "prompt":"query",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "HC3":{
+    "file_name": "HC3/train.json",
+    "ranking": true,
+    "columns": {
+      "prompt":"query",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "hh-rlhf-harmless-base":{
+    "file_name": "hh-rlhf-harmless-base/train.json",
+    "ranking": true,
+    "columns": {
+      "prompt":"query",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "hh-rlhf-helpful-base":{
+    "file_name": "hh-rlhf-helpful-base/train.json",
+    "ranking": true,
+    "columns": {
+      "prompt":"query",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "safe-rlhf":{
+    "file_name": "safe-rlhf/train.json",
+    "ranking": true,
+    "columns": {
+      "prompt":"query",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "TruthfulQA":{
+    "file_name": "TruthfulQA/train.json",
+    "ranking": true,
+    "columns": {
+      "prompt": "query",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  }
+}

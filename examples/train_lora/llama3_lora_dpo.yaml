@@ -1,0 +1,47 @@
+### model
+# model_name_or_path: models/Qwen2.5-7B-SFT-MeetingBank
+model_name_or_path: /mnt/workspace2/models/Qwen2.5-7B-Instruct
+# adapter_name_or_path: saves/Qwen2.5-7B-Instruct/lora/SFT/MeetingBank
+
+### method
+stage: dpo
+do_train: true
+finetuning_type: lora
+lora_target: q_proj,v_proj
+# deepspeed: examples/deepspeed/ds_z3_config.json
+pref_beta: 0.1
+pref_loss: sigmoid  # choices: [sigmoid (dpo), orpo, simpo]
+CL_method: vanilla
+loss_func: DPO
+
+### dataset
+# dataset: Capybara-Preferences,HC3,hh-rlhf-harmless-base,hh-rlhf-helpful-base,safe-rlhf,TruthfulQA
+dataset: safe-rlhf
+# dataset: MeetingBank
+template: qwen
+cutoff_len: 2048
+# max_samples: 10
+overwrite_cache: true
+preprocessing_num_workers: 2
+
+### output
+output_dir: saves/Qwen2.5-7B-Instruct/lora/STL
+logging_steps: 10
+save_steps: 1000
+plot_loss: true
+overwrite_output_dir: true
+
+### train
+per_device_train_batch_size: 2
+gradient_accumulation_steps: 8
+learning_rate: 5.0e-6
+num_train_epochs: 3.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.1
+bf16: true
+ddp_timeout: 180000000
+### eval
+# val_size: 0.1
+# per_device_eval_batch_size: 1
+# eval_strategy: steps
+# eval_steps: 300

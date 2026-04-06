@@ -1,0 +1,4 @@
+model_name_or_path: /mnt/workspace2/models/llama-3.1-8b
+adapter_name_or_path: saves/llama3.1-8b/lora/sft-metamath
+template: llama3
+finetuning_type: lora

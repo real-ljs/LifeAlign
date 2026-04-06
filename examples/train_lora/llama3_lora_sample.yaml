@@ -1,0 +1,43 @@
+### model
+# model_name_or_path: /mnt/workspace2/models/Qwen2-72B-Instruct-Step-DPO-4bit-quant
+model_name_or_path: /mnt/workspace2/models/Mistral-7b-v0.3
+adapter_name_or_path: saves/mistral-7b-v0.3/lora/sft-metamath
+K: 7
+sample: true
+# infer_dtype: bfloat16
+# deepspeed: examples/deepspeed/ds_z3_config.json
+# accelerate: examples/accelerate/fsdp_config.yaml
+
+### method
+stage: sft
+finetuning_type: lora
+
+### dataset
+eval_dataset: sample-3
+# template: mistral
+template: mistral
+cutoff_len: 8192
+# max_samples: 10
+overwrite_cache: true
+preprocessing_num_workers: 16
+
+### generate
+max_length: 8192
+max_new_tokens: 512
+temperature: 0.95
+top_k: 50
+top_p: 0.9
+
+### output
+output_dir: saves/mistral-7b/sample-3/predict
+# output_dir: saves/qwen-72b-step-dpo-4bit-quant/sample-3/predict
+overwrite_output_dir: true
+report_to: none
+
+### eval
+per_device_eval_batch_size: 2
+predict_with_generate: true
+ddp_timeout: 180000000
+
+
+# CUDA_VISIBLE_DEVICES=1,4 accelerate launch --config_file examples/accelerate/fsdp_config.yaml --main_process_port 29501  src/train.py examples/train_lora/llama3_lora_predict.yaml
