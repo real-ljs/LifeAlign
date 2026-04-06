@@ -1,6 +1,5 @@
 # LifeAlign
 
-<<<<<<< HEAD
 [LifeAlign: Lifelong Alignment for Large Language Models with Memory-Augmented Focalized Preference Optimization (AAAI 2026 Oral)](https://arxiv.org/pdf/2509.17183)
 
 Code is coming soon...
@@ -236,11 +235,13 @@ For continual learning runs, each task usually has its own subdirectory under th
 If you find this project useful, please cite the paper:
 
 ```bibtex
-@article{li2025lifealign,
-  title={LifeAlign: Lifelong Alignment for Large Language Models with Memory-Augmented Focalized Preference Optimization},
+@inproceedings{li2026lifealign,
+  title={Lifealign: Lifelong alignment for large language models with memory-augmented focalized preference optimization},
   author={Li, Junsong and Zhou, Jie and Zhan, Bihao and Yang, Yutao and Pan, Qianjun and Chen, Shilian and Huai, Tianyu and Li, Xin and Chen, Qin and He, Liang},
-  journal={arXiv preprint arXiv:2509.17183},
-  year={2025}
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume={40},
+  number={37},
+  pages={31618--31626},
+  year={2026}
 }
 ```
->>>>>>> Initial commit
