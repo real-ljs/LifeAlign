@@ -108,67 +108,8 @@ bash bash.sh
 - 当前仓库中的 `bash.sh` 是一个可直接运行的自动化模板。
 - 如果你希望更明确地按论文中的 LifeAlign 设定运行，请重点关注 `--CL_method`、`--loss_func`、`--use_replay`、`--denoising_threshold`、`--projection_gamma` 这些参数。
 
-### 3.2 使用 `llamafactory-cli train + 显式参数`
 
-下面给出一个 LifeAlign 风格的持续对齐训练示例：
-
-```bash
-CUDA_VISIBLE_DEVICES=0,1 llamafactory-cli train \
-  --model_name_or_path /path/to/Qwen2.5-7B-Instruct \
-  --stage dpo \
-  --do_train \
-  --finetuning_type lora \
-  --lora_target q_proj,v_proj \
-  --pref_beta 0.1 \
-  --pref_loss sigmoid \
-  --CL_method my_method \
-  --loss_func FPO \
-  --use_replay \
-  --denoising_threshold 0.9 \
-  --projection_gamma 0.5 \
-  --dataset Capybara-Preferences,HC3,hh-rlhf-harmless-base,hh-rlhf-helpful-base,safe-rlhf,TruthfulQA \
-  --template qwen \
-  --cutoff_len 2048 \
-  --overwrite_cache \
-  --preprocessing_num_workers 4 \
-  --output_dir saves/Qwen2.5-7B-Instruct/lora/LifeAlign-order1 \
-  --logging_steps 10 \
-  --save_steps 1000 \
-  --plot_loss \
-  --overwrite_output_dir \
-  --report_to none \
-  --per_device_train_batch_size 1 \
-  --gradient_accumulation_steps 16 \
-  --learning_rate 5.0e-6 \
-  --num_train_epochs 3.0 \
-  --lr_scheduler_type cosine \
-  --warmup_ratio 0.1 \
-  --bf16
-```
-
-评测示例：
-
-```bash
-CUDA_VISIBLE_DEVICES=0 llamafactory-cli train \
-  --model_name_or_path /path/to/Qwen2.5-7B-Instruct \
-  --adapter_name_or_path saves/Qwen2.5-7B-Instruct/lora/LifeAlign-order1/TruthfulQA \
-  --stage sft \
-  --do_predict \
-  --finetuning_type lora \
-  --eval_dataset Capybara-Preferences-test-sft,HC3-test-sft,hh-rlhf-harmless-base-test-sft,hh-rlhf-helpful-base-test-sft,safe-rlhf-test-sft,TruthfulQA-test-sft \
-  --template qwen \
-  --cutoff_len 2048 \
-  --overwrite_cache \
-  --preprocessing_num_workers 4 \
-  --max_new_tokens 1024 \
-  --output_dir save_test/Qwen2.5-7B-Instruct/lora/LifeAlign-order1/TruthfulQA \
-  --overwrite_output_dir \
-  --report_to none \
-  --per_device_eval_batch_size 4 \
-  --predict_with_generate
-```
-
-### 3.3 使用 YAML 配置文件启动
+### 3.2 使用 YAML 配置文件启动
 
 你也可以直接通过 YAML 配置文件启动训练：
 
@@ -205,6 +146,7 @@ llamafactory-cli train /path/to/your_config.yaml
 - 初始化阶段使用的数据集
 - 输出目录
 - batch size、learning rate 等超参数
+- 数据集
 
 都需要手动修改：
 

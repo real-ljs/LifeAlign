@@ -48,9 +48,6 @@ def run_exp(
         get_train_args(args)
     )
 
-    # model_args, data_args, training_args, finetuning_args, generating_args = get_train_args(
-    #     yaml_path="/mnt/workspace2/LJS/CRL/examples/train_lora/llama3_lora_dpo.yaml")
-
     if finetuning_args.stage == "pt":
         run_pt(model_args, data_args, training_args, finetuning_args, callbacks)
     elif finetuning_args.stage == "sft":

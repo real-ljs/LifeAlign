@@ -24,7 +24,7 @@ import numpy as np
 import torch
 from transformers import Seq2SeqTrainer
 from typing_extensions import override
-
+from pathlib import Path
 from ...extras.constants import IGNORE_INDEX
 from ...extras.logging import get_logger
 from ..callbacks import PissaConvertCallback, SaveProcessorCallback
@@ -319,10 +319,8 @@ class CLTrainer(Seq2SeqTrainer):
             self.load_l2p_prompt_pool_for_task(task_checkpoint_dir[0])
 
         for id, eval_dataset in enumerate(self.continual_eval_datasets):
-            datatset_info = eval_dataset.info.download_checksums.keys()
-            dataset_name = (
-                list(datatset_info)[0].split("")[-1].split("/test.json")[0]
-            )
+            dataset_info = eval_dataset.info.download_checksums.keys()
+            dataset_name = Path(next(iter(dataset_info))).parent.name
             predict_results = self.predict(
                 eval_dataset, metric_key_prefix="predict", **self.gen_kwargs
             )

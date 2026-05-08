@@ -105,67 +105,8 @@ Important:
 - The current `bash.sh` is a runnable automation template in this repo.
 - If you want to explicitly reproduce the LifeAlign-style setting from the paper, pay attention to arguments such as `--CL_method`, `--loss_func`, `--use_replay`, `--denoising_threshold`, and `--projection_gamma`.
 
-### 2. Launch with `llamafactory-cli train` and explicit arguments
 
-Below is an example of continual alignment training with a LifeAlign-style configuration:
-
-```bash
-CUDA_VISIBLE_DEVICES=0,1 llamafactory-cli train \
-  --model_name_or_path /path/to/Qwen2.5-7B-Instruct \
-  --stage dpo \
-  --do_train \
-  --finetuning_type lora \
-  --lora_target q_proj,v_proj \
-  --pref_beta 0.1 \
-  --pref_loss sigmoid \
-  --CL_method my_method \
-  --loss_func FPO \
-  --use_replay \
-  --denoising_threshold 0.9 \
-  --projection_gamma 0.5 \
-  --dataset Capybara-Preferences,HC3,hh-rlhf-harmless-base,hh-rlhf-helpful-base,safe-rlhf,TruthfulQA \
-  --template qwen \
-  --cutoff_len 2048 \
-  --overwrite_cache \
-  --preprocessing_num_workers 4 \
-  --output_dir saves/Qwen2.5-7B-Instruct/lora/LifeAlign-order1 \
-  --logging_steps 10 \
-  --save_steps 1000 \
-  --plot_loss \
-  --overwrite_output_dir \
-  --report_to none \
-  --per_device_train_batch_size 1 \
-  --gradient_accumulation_steps 16 \
-  --learning_rate 5.0e-6 \
-  --num_train_epochs 3.0 \
-  --lr_scheduler_type cosine \
-  --warmup_ratio 0.1 \
-  --bf16
-```
-
-Prediction / evaluation example:
-
-```bash
-CUDA_VISIBLE_DEVICES=0 llamafactory-cli train \
-  --model_name_or_path /path/to/Qwen2.5-7B-Instruct \
-  --adapter_name_or_path saves/Qwen2.5-7B-Instruct/lora/LifeAlign-order1/TruthfulQA \
-  --stage sft \
-  --do_predict \
-  --finetuning_type lora \
-  --eval_dataset Capybara-Preferences-test-sft,HC3-test-sft,hh-rlhf-harmless-base-test-sft,hh-rlhf-helpful-base-test-sft,safe-rlhf-test-sft,TruthfulQA-test-sft \
-  --template qwen \
-  --cutoff_len 2048 \
-  --overwrite_cache \
-  --preprocessing_num_workers 4 \
-  --max_new_tokens 1024 \
-  --output_dir save_test/Qwen2.5-7B-Instruct/lora/LifeAlign-order1/TruthfulQA \
-  --overwrite_output_dir \
-  --report_to none \
-  --per_device_eval_batch_size 4 \
-  --predict_with_generate
-```
-
-### 3. Launch with a YAML config file
+### 2. Launch with a YAML config file
 
 You can also run training by passing a YAML file directly:
 
@@ -204,6 +145,7 @@ If you want to modify:
 - datasets used in initialization
 - output path
 - batch size, learning rate, or other SFT hyperparameters
+- dataset
 
 you need to edit:
 

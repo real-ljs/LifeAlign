@@ -9,8 +9,8 @@ lora_target: q_proj,v_proj
 # deepspeed: examples/deepspeed/ds_z3_config.json
 pref_beta: 0.1
 pref_loss: sigmoid  # choices: [sigmoid (dpo), orpo, simpo]
-CL_method: vanilla
-loss_func: DPO
+CL_method: my_method
+loss_func: FPO
 
 ### dataset
 dataset: Capybara-Preferences,HC3,hh-rlhf-harmless-base,hh-rlhf-helpful-base,safe-rlhf,TruthfulQA
