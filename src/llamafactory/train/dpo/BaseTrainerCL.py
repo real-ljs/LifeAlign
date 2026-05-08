@@ -43,6 +43,7 @@ from ...data import (
     get_dataset,
     get_template_and_fix_tokenizer,
 )
+from pathlib import Path
 from ...data.collator import MyCollator, DataCollatorForSeq2Seq
 from ...extras.logging import get_logger
 from datasets import concatenate_datasets
@@ -342,10 +343,8 @@ class BaseCLTrainer:
             original_rl_dataset = rl_dataset
             # print(self.finetuning_args.CL_method)
 
-            datatset_info = rl_dataset.info.download_checksums.keys()
-            dataset_name = (
-                list(datatset_info)[0].split("")[-1].split("/train.json")[0]
-            )
+            dataset_info = rl_dataset.info.download_checksums.keys()
+            dataset_name = Path(next(iter(dataset_info))).parent.name
             output_dir = f"{base_rl_output_dir}/{dataset_name}"
             sft_output_dir = f"{base_sft_output_dir}/{dataset_name}"
             logger.info(f"SFT for {dataset_name} Results will be saved on {sft_output_dir}.")

@@ -29,13 +29,13 @@ pip install --upgrade pip
 
 ### 1.2 安装 PyTorch
 
-请先根据本机 CUDA 版本安装对应的 PyTorch。下面以 CUDA 12.1 为例：
+请先根据本机 CUDA 版本安装对应的 PyTorch。下面以 CUDA 11.8 安装 torch 2.6.0 为例：
 
 ```bash
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+pip install torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0
 ```
 
-如果你的 CUDA 版本不同，请替换为对应的官方 wheel 源。
+请根据你 CUDA 版本安装合适的 PyTorch，本项目建议的 PyTorch 版本为`2.3.0` ~ `2.7.1`。
 
 ### 1.3 安装本项目
 

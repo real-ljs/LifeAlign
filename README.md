@@ -29,13 +29,13 @@ pip install --upgrade pip
 
 ### 2. Install PyTorch
 
-Please install the PyTorch version that matches your CUDA environment first. For example:
+Please install the PyTorch version that matches your local CUDA version first. The following example installs torch 2.6.0 with CUDA 11.8:
 
 ```bash
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+pip install torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0
 ```
 
-If you use another CUDA version, please replace the wheel index accordingly.
+Please choose the appropriate PyTorch version according to your CUDA version. The recommended PyTorch version for this project is 2.3.0 ~ 2.7.1.
 
 ### 3. Install this project
 

@@ -1,7 +1,5 @@
 ### model
-# model_name_or_path: models/Qwen2.5-7B-SFT-MeetingBank
 model_name_or_path: /mnt/workspace2/models/Qwen2.5-7B-Instruct
-# adapter_name_or_path: saves/Qwen2.5-7B-Instruct/lora/SFT/MeetingBank
 
 ### method
 stage: dpo
@@ -15,9 +13,8 @@ CL_method: vanilla
 loss_func: DPO
 
 ### dataset
-# dataset: Capybara-Preferences,HC3,hh-rlhf-harmless-base,hh-rlhf-helpful-base,safe-rlhf,TruthfulQA
-dataset: safe-rlhf
-# dataset: MeetingBank
+dataset: Capybara-Preferences,HC3,hh-rlhf-harmless-base,hh-rlhf-helpful-base,safe-rlhf,TruthfulQA
+# dataset: safe-rlhf
 template: qwen
 cutoff_len: 2048
 # max_samples: 10
