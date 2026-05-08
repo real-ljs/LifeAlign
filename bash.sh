@@ -48,11 +48,11 @@ esac
 # 拼接训练用的数据集字符串：<task1>,<task2>,...
 TRAIN_DATASETS_STRING=$(IFS=,; echo "${TASK_NAMES[*]/#/}")
 
-GPU_ID=1,2
+GPU_ID=6,7
 MODEL_NAME="Qwen2.5-7B-Instruct"
 MODEL_PATH="/mnt/workspace2/models/${MODEL_NAME}"
-BASE_ADAPTER_PATH="saves/${MODEL_NAME}/lora/DPO+CPPO-w-replay-${ORDER}"
-BASE_OUTPUT_DIR="save_test/${MODEL_NAME}/lora/DPO+CPPO-w-replay-${ORDER}"
+BASE_ADAPTER_PATH="saves/${MODEL_NAME}/lora/LifeAlign-${ORDER}"
+BASE_OUTPUT_DIR="save_test/${MODEL_NAME}/lora/LifeAlign-${ORDER}"
 TEMPLATE="qwen"
 
 mkdir -p "${BASE_ADAPTER_PATH}"
@@ -67,9 +67,9 @@ CUDA_VISIBLE_DEVICES="${GPU_ID}" llamafactory-cli train \
   --lora_target q_proj,v_proj \
   --pref_beta 0.1 \
   --pref_loss sigmoid \
-  --CL_method CPPO \
+  --CL_method my_method \
   --use_replay \
-  --loss_func DPO \
+  --loss_func FPO \
   --denoising_threshold 0.9 \
   --projection_gamma 0.5 \
   --dataset "${TRAIN_DATASETS_STRING}" \
