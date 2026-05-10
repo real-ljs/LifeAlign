@@ -23,8 +23,8 @@ declare -a TASK_NAMES=(
     "TruthfulQA"
 )
 # ==================== Continual Training Loop / 持续学习训练循环 ====================
-TRAIN_DATASETS_STRING="CRL/Capybara-Preferences,CRL/HC3,CRL/hh-rlhf-harmless-base,CRL/hh-rlhf-helpful-base,CRL/safe-rlhf,CRL/TruthfulQA"
-EVAL_DATASETS_STRING="CRL/Capybara-Preferences-test-sft, CRL/HC3-test-sft, CRL/hh-rlhf-harmless-base-test-sft, CRL/hh-rlhf-helpful-base-test-sft, CRL/safe-rlhf-test-sft, CRL/TruthfulQA-test-sft"
+TRAIN_DATASETS_STRING="Capybara-Preferences,HC3,hh-rlhf-harmless-base,hh-rlhf-helpful-base,safe-rlhf,TruthfulQA"
+EVAL_DATASETS_STRING="Capybara-Preferences-test-sft, HC3-test-sft, hh-rlhf-harmless-base-test-sft, hh-rlhf-helpful-base-test-sft, safe-rlhf-test-sft, TruthfulQA-test-sft"
 mkdir -p "${BASE_ADAPTER_PATH}"
 
 TRAIN_LOG_FILE="${BASE_ADAPTER_PATH}/run_train.log"
