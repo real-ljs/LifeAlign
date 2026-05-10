@@ -67,62 +67,6 @@ class MyDPOTrainer(vanillaDPOTrainer):
             **kwargs
         )
     
-    def mcpo_loss(
-        self,
-        policy_chosen_logps: torch.Tensor,
-        policy_rejected_logps: torch.Tensor,
-        reference_chosen_logps: torch.Tensor,
-        reference_rejected_logps: torch.Tensor,
-    ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, Dict[str, float]]:
-        """
-        Memory Consolidation-based Preference Learning (MCPL) Loss
-        
-        基于记忆巩固理论的偏好学习损失函数，用统一的巩固强度处理所有样本类型
-        
-        核心思想：
-        - 不确定样本(logits≈0): 编码阶段，高巩固强度
-        - 错误样本(logits<0): 重新巩固阶段，最高巩固强度  
-        - 正确样本(logits>0): 维护阶段，递减巩固强度
-        
-        Args:
-            policy_chosen_logps: Policy model log probabilities for chosen responses
-            policy_rejected_logps: Policy model log probabilities for rejected responses  
-            reference_chosen_logps: Reference model log probabilities for chosen responses
-            reference_rejected_logps: Reference model log probabilities for rejected responses
-            
-        Returns:
-            Tuple of (losses, chosen_rewards, rejected_rewards, mcpl_metrics)
-        """
-        # 确保tensor在正确的device上
-        device = self.accelerator.device
-        policy_chosen_logps = policy_chosen_logps.to(device)
-        policy_rejected_logps = policy_rejected_logps.to(device) 
-        reference_chosen_logps = reference_chosen_logps.to(device)
-        reference_rejected_logps = reference_rejected_logps.to(device)
-        
-        pi_logratios = policy_chosen_logps - policy_rejected_logps
-        ref_logratios = reference_chosen_logps - reference_rejected_logps
-        logits = self.beta * (pi_logratios - ref_logratios)
-        
-        error_penalty = 2
-        
-        consolidation_weight = torch.where(
-            logits < 0,
-            # 情况3: 错误样本 - 权重 = 1 + λ × |X|
-            1.0 + error_penalty * torch.abs(logits),
-            # 情况1&2: 不确定&正确样本 - 权重 = exp(-X)
-            torch.exp(-logits)
-        )
-        
-        base_dpo_loss = -F.logsigmoid(logits)
-        
-        mcpl_losses = base_dpo_loss * consolidation_weight
-        
-        chosen_rewards = self.beta * (policy_chosen_logps - reference_chosen_logps).detach()
-        rejected_rewards = self.beta * (policy_rejected_logps - reference_rejected_logps).detach()
-
-        return mcpl_losses, chosen_rewards, rejected_rewards
-
     def fpo_loss(
         self,
         policy_chosen_logps: torch.Tensor,
