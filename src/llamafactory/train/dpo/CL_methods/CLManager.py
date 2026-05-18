@@ -42,10 +42,6 @@ class ContinualLearningManager:
         self.lora_layer_names = self._infer_lora_layer_names()
         self.stage = stage
         
-        if not hasattr(self.model, "cl_alpha_logit"):
-            initial_alpha = nn.Parameter(torch.tensor(0.0), requires_grad=True)
-            self.model.register_parameter("cl_alpha_logit", initial_alpha)
-        
         logger.info(f"ContinualLearningManager initialized.")
 
     def on_task_begin(self, task_index: int):
