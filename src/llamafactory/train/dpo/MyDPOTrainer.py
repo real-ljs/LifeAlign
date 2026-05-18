@@ -164,17 +164,8 @@ class MyDPOTrainer(vanillaDPOTrainer):
         if self.ftx_gamma > 1e-6:
             losses += self.ftx_gamma * sft_loss
 
-        primary_task_loss = losses.mean()
-        logger.info(f"RL Loss: {primary_task_loss:.4f}")
-        # --- Continual Learning Regularization ---
-        final_loss = primary_task_loss
-        # logger.info(f"FPO Loss: {final_loss:.4f}")
-        # if self.cl_manager and self.cl_manager.task_index > 0:
-        #     reg_loss = self.cl_manager.calculate_regularization_loss()
-        #     final_loss = self.cl_manager.combine_losses(primary_task_loss, reg_loss)
-
-        #     metrics[f"{'eval_' if train_eval == 'eval' else ''}cl_reg_loss"] = reg_loss.detach().cpu().item()
-        #     metrics[f"{'eval_' if train_eval == 'eval' else ''}dpo_loss_pre_cl"] = primary_task_loss.detach().cpu().item()
+        final_loss = losses.mean()
+        logger.info(f"RL Loss: {final_loss:.4f}")
 
         reward_accuracies = (chosen_rewards > rejected_rewards).float()
 
@@ -190,9 +181,6 @@ class MyDPOTrainer(vanillaDPOTrainer):
         if self.loss_type == "orpo":
             metrics["{}sft_loss".format(prefix)] = sft_loss.detach().mean().cpu()
             metrics["{}odds_ratio_loss".format(prefix)] = ((losses - sft_loss) / self.beta).detach().mean().cpu()
-            if not (self.cl_state and self.task_index > 0 and hasattr(model, "cl_alpha_logit")):
-                 metrics[f"{prefix}loss"] = primary_task_loss.detach().cpu() # Total loss if no CL
-            else: # If CL is active, final_loss is the one returned, dpo_loss_pre_cl is logged
-                 metrics[f"{prefix}loss"] = final_loss.detach().cpu()
+            metrics[f"{prefix}loss"] = final_loss.detach().cpu()
 
         return final_loss, metrics
